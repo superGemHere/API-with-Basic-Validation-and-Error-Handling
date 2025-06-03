@@ -7,6 +7,8 @@ This is a simple API with Basic Validation and Error Handling.
 - 🔍 **Read**: User can see all the data from the in-memory storage and a certain item trough It's ID.
 - 🆕 **Update**: The user is able to update an item with a given ID.
 - ❎ **Delete**: User can delete from the in-memory storage an item with a given ID.
+- ❎ **Basic Validation**: Has basic validation on the needed API endpoints.
+- ❎ **Global Error Handler**: Has global error handling middleware.
 
 ## Endpoints
 
