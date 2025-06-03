@@ -1,8 +1,10 @@
-import { Router } from 'express';
+import { NextFunction, Router } from 'express';
 import { Request, Response } from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
 import data from "../data.json";
+import { itemValidator } from '../middlewares/itemValidator';
+import createHttpError from '../utils/createHttpError';
 
 const router = Router();
 
@@ -25,11 +27,8 @@ router.get('/', (req: Request, res: Response) => {
     res.json(items);
 });
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', itemValidator, (req: Request, res: Response) => {
     const { name, description } = req.body;
-    if (!name || !description) {
-        res.status(400).json({ message: 'Name and description are required' });
-    }
 
     const newItem: Item = {
         id: uuidv4(),
@@ -41,33 +40,30 @@ router.post('/', (req: Request, res: Response) => {
     res.status(201).json(newItem);
 });
 
-router.get('/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
     const item = items.find(i => i.id === req.params.id);
     if (!item) {
-         res.status(404).json({ message: 'Item not found' });
-    }
+       return next(createHttpError('Item not found', 404));
+  }
     res.json(item);
 });
 
-router.put('/:id', (req: Request, res: Response) => {
+router.put('/:id', itemValidator, (req: Request, res: Response, next: NextFunction) => {
     const itemIndex = items.findIndex(i => i.id === req.params.id);
     if (itemIndex === -1) {
-         res.status(404).json({ message: 'Item not found' });
+        return next(createHttpError('Item not found', 404));
     }
 
     const { name, description } = req.body;
-    if (!name || !description) {
-         res.status(400).json({ message: 'Name and description are required' });
-    }
 
     items[itemIndex] = { ...items[itemIndex], name, description };
     res.json(items[itemIndex]);
 });
 
-router.delete('/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
     const itemIndex = items.findIndex(i => i.id === req.params.id);
     if (itemIndex === -1) {
-         res.status(404).json({ message: 'Item not found' });
+        return next(createHttpError('Item not found', 404));
     }
 
     const deletedItem = items.splice(itemIndex, 1);
