@@ -1,0 +1,19 @@
+{
+   "items": [
+      {
+         "id": "asdasdasdasdasdasd",
+         "name": "Knife",
+         "description": "Hardened stainless steel knife."
+      },
+      {
+         "id": "asdasdasdasd123asdasdasd",
+         "name": "Thor's Hammer",
+         "description": "A mythical hammer said to be wielded by Thor, the Norse god of thunder."
+      },
+      {
+         "id": "asdasdasd1231dasd",
+         "name": "Iron-Man's Suit",
+         "description": "A technologically advanced suit worn by Tony Stark."
+      }
+   ]
+}
