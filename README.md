@@ -48,7 +48,7 @@ This is a simple API with Basic Validation and Error Handling.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/superGemHere/Simple-In-Memory-API-for-Managing-Items
+   git clone https://github.com/superGemHere/API-with-Basic-Validation-and-Error-Handling
    ```
 2. Install dependencies:
    ```bash
