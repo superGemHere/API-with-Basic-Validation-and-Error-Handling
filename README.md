@@ -13,7 +13,7 @@ This is a simple API with Basic Validation and Error Handling.
 ## Endpoints
 
 > [!WARNING]  
-> For POST & PUT this properties are mandatory: name, description.
+> For POST & PUT these properties are mandatory: name, description.
 
 - http://localhost:3000/items - GET, POST
 - http://localhost:3000/items/:id - PUT, DELETE
